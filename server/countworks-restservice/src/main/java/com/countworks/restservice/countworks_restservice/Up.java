@@ -10,7 +10,7 @@ public class Up {
 	@GET
     @Path("ping")
     public String getServerTime() {
-        System.out.println("RESTful Service 'MessageService' is running ==> ping");
+        System.out.println("RESTful Service 'countWORKS' is running ==> ping");
         return "received ping on "+new Date().toString();
     }
 	
