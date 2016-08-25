@@ -41,16 +41,18 @@ public class Up {
 		try{
 			
 			
+		AES aes = new AES();
+		String t = aes.encryptText("Matthew");
+		t = aes.decryptText(t);
 			
-			
-			
+			/*
 			AmazonDynamoDBClient client = new AmazonDynamoDBClient(new ProfileCredentialsProvider("countworks"));
 			client.setRegion(Region.getRegion(Regions.US_WEST_2));
 			DynamoDBMapper mapper = new DynamoDBMapper(client);
 			ClientRecord clientRecord = new ClientRecord();
-			clientRecord.setClientId(1);
+			clientRecord.setClientId("1");
 			mapper.save(clientRecord); 
-			
+			*/
 			}catch(Exception e){
 				e.printStackTrace(System.out);
 			}
