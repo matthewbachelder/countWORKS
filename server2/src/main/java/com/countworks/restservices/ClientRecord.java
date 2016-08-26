@@ -1,5 +1,7 @@
 package com.countworks.restservices;
 
+import java.util.Map;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
@@ -15,6 +17,7 @@ public class ClientRecord {
 	private String phone;
 	private String siteUsername;
 	private String sitePassword;
+	private Map<String, String> corporationList; //<"CorporationName", "CorporationClassRecordID">
 	private AES aes = new AES();
 	
 	
@@ -75,5 +78,12 @@ public class ClientRecord {
 		this.sitePassword = aes.encryptText(sitePassword);
 	}
 
+	@DynamoDBAttribute(attributeName="CorporationList") 
+	public Map<String, String> getCorporationList(){
+		return this.corporationList;
+	}
+	public void setCorporationList(Map<String, String> corporationList){
+		this.corporationList= corporationList;
+	}
 	
 }
