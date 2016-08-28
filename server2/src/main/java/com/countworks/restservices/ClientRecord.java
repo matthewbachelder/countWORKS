@@ -15,7 +15,6 @@ public class ClientRecord {
 	private String lastName;
 	private String primaryEmail;
 	private String phone;
-	private String siteUsername;
 	private String sitePassword;
 	private Map<String, String> corporationList; //<"CorporationName", "CorporationClassRecordID">
 	private AES aes = new AES();
@@ -60,14 +59,6 @@ public class ClientRecord {
 	}
 	public void setPhone(String phone){
 		this.phone = aes.encryptText(phone);
-	}
-	
-	@DynamoDBAttribute(attributeName="SiteUserName")
-	public String getSiteUsername(){
-		return aes.decryptText(siteUsername);
-	}
-	public void setSiteUsername(String siteUsername){
-		this.siteUsername = aes.encryptText(siteUsername);
 	}
 	
 	@DynamoDBAttribute(attributeName="sitePassword")

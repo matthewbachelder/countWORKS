@@ -6,10 +6,11 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 
-@DynamoDBTable(tableName="BankRecords") //TODO create table BankRecords
+@DynamoDBTable(tableName="BankRecords") 
 public class BankRecord {
 	
 	private String bankRecordId;
+	private String corporateId;
 	private String bankAccountNumber;
 	private String bankRoutingNumber;
 	private String voidedCheck; //string link to file
@@ -27,6 +28,13 @@ public class BankRecord {
 	}
 	public void setBankRecordId(String bankRecordId){
 		this.bankRecordId = bankRecordId;
+	}
+	@DynamoDBAttribute(attributeName="CorporateId")
+	public String getCorporateId(){
+		return corporateId;
+	}
+	public void setCorporateId(String corporateId){
+		this.corporateId = corporateId;
 	}
 	
 	@DynamoDBAttribute(attributeName="BankAccountNumber")

@@ -1,0 +1,86 @@
+
+countWORKS Client APIs
+
+
+New Client Account
+
+Description: The countWorks New Client Account API creates a new Client Record.
+
+Use Case: New customer registration to countWORKS.com
+
+Details:
+
+HTTP POST
+URL: http://0.0.0.0:8280/countworks-restservices/client/create-new-client
+
+PARAMETERS
+
+Parameter: firstName
+Description: Client's first name
+Required: yes
+Possible Values: text string max characters 40
+
+Parameter: lastName
+Description: Client's last name
+Required: yes
+Possible Values: text string max characters 40
+
+Parameter: phone
+Description: Client's phone number
+Required: yes
+Possible Values: text string formatted as XXX-XXX-XXXX
+
+Parameter: primaryEmail
+Description: Client's primary email address
+Required: yes
+Possible Values: text string max characters 40
+
+Parameter: sitePassword
+Description: A new password used by the client to access the site
+Required: yes
+Possible Values: text string max characters 40
+
+
+RESPONSE CODES
+
+Code: 200
+Status: OK
+Description: New client record was created successfully
+
+Code: 401
+Status: Error
+Description: Email address already in use
+
+Code: 402
+Description: Content in parameters does not match the expected format 
+
+
+REQUEST EXAMPLE
+
+HTTP
+
+POST http://0.0.0.0:8280/countworks-restservices/client/create-new-client HTTP/1.1
+
+  Content-Type: application/json
+  {
+  	"firstName": "John",
+  	"lastName": "Doe",
+  	"phone": "987-876-9872",
+  	"primaryEmail": "info@countworks.com",
+  	"sitePassword": "hdb^hhs54Fk"
+  }
+
+
+
+EXPECTED RESPONSE
+
+The response will include a status code of 200 if the request was successfully completed.
+IMPORTANT: A successful request will also include a unique client identifier created for the client. 
+	       This client identifier must be included in all future requests made for that client.
+	
+	       
+RESPONSE EXAMPLE	        
+
+
+
+

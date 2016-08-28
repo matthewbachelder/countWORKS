@@ -6,10 +6,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName="EmployeeRecords") //TODO create table EmployeeRecords
+@DynamoDBTable(tableName="EmployeeRecords") 
 public class EmployeeRecord {
 	
+	
 	private String employeeId;
+	private String corporateId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -23,6 +25,14 @@ public class EmployeeRecord {
 	}
 	public void setEmployeeId(String employeeId){
 		this.employeeId = employeeId;
+	}
+	
+	@DynamoDBAttribute(attributeName="CorporateId")
+	public String getCorporateId(){
+		return this.corporateId;
+	}
+	public void setCorporateId(String corporateId){
+		this.corporateId = corporateId;
 	}
 	
 	@DynamoDBAttribute(attributeName="FirstName")

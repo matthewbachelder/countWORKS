@@ -32,33 +32,5 @@ public class Up {
         System.out.println("RESTful Service 'countWORKS' is running ==> ping");
         return "received ping on "+new Date().toString();
     }
-	
-	
-	@GET
-    @Path("clientTest")
-    public String getClientTest() {
-        
-		try{
-			
-			
-		AES aes = new AES();
-		String t = aes.encryptText("Matthew");
-		t = aes.decryptText(t);
-			
-			/*
-			AmazonDynamoDBClient client = new AmazonDynamoDBClient(new ProfileCredentialsProvider("countworks"));
-			client.setRegion(Region.getRegion(Regions.US_WEST_2));
-			DynamoDBMapper mapper = new DynamoDBMapper(client);
-			ClientRecord clientRecord = new ClientRecord();
-			clientRecord.setClientId("1");
-			mapper.save(clientRecord); 
-			*/
-			}catch(Exception e){
-				e.printStackTrace(System.out);
-			}
-			
-			
-		
-        return "ok";
-    }
+
 }

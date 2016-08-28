@@ -4,10 +4,11 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName="CheckRegistryRecords") //TODO create table CheckRegistryRecords
+@DynamoDBTable(tableName="CheckRegistryRecords") 
 public class CheckRegistryRecord {
 
 	private String checkRegistryId;
+	private String corporateId;
 	private String checkImage;
 	private String checkAmount;
 	private String checkNumber;
@@ -21,6 +22,14 @@ public class CheckRegistryRecord {
 	}
 	public void setCheckRegistryId(String checkRegistryId){
 		this.checkRegistryId = checkRegistryId;
+	}
+	
+	@DynamoDBAttribute(attributeName="CorporateId")
+	public String getCorporateId(){
+		return this.corporateId;
+	}
+	public void setCorporateId(String corporateId){
+		this.corporateId = corporateId;
 	}
 	
 	@DynamoDBAttribute(attributeName="CheckImage") 
