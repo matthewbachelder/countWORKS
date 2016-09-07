@@ -31,7 +31,7 @@ public class Client {
     	System.out.println("here");
     	client.encrypt();
         String result = client.createNewClient();
-    	
+    	System.out.println(result);
     	return Response.status(200).entity(result).build();
     	
     }

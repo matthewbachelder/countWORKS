@@ -82,5 +82,5 @@ IMPORTANT: A successful request will also include a unique client identifier cre
 RESPONSE EXAMPLE	        
 
 
-
+InboundJaxrsResponse{ClientResponse{method=POST, uri=http://0.0.0.0:8280/countworks-restservices/client/create-new-client, status=200, reason=OK}}
 
