@@ -26,11 +26,13 @@ public class Client {
     @Path("/create-new-client")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    
     public Response newClientRecord(ClientRecord client) {
     	
+    	System.out.println("here");
+    	client.encrypt();
+        String result = client.createNewClient();
     	
-    	return Response.status(500).entity("").build();
+    	return Response.status(200).entity(result).build();
     	
     }
 	

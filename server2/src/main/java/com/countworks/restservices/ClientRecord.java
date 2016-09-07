@@ -1,10 +1,13 @@
 package com.countworks.restservices;
 
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 @DynamoDBTable(tableName="ClientRecords")
@@ -19,6 +22,16 @@ public class ClientRecord {
 	private Map<String, String> corporationList; //<"CorporationName", "CorporationClassRecordID">
 	private AES aes = new AES();
 	
+	public ClientRecord(){
+		
+	}
+	public ClientRecord(String firstName, String lastName, String phone, String primaryEmail, String sitePassword){
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.phone=phone;
+		this.primaryEmail=primaryEmail;
+		this.sitePassword = sitePassword;
+	}
 	
 	@DynamoDBHashKey(attributeName="id") 
 	public String getClientId(){
@@ -38,10 +51,10 @@ public class ClientRecord {
 	}
 	
 	@DynamoDBAttribute(attributeName="LastName")
-	public String getLasttName(){
+	public String getLastName(){
 		return aes.decryptText(lastName);
 	}
-	public void setLastname(String lastName){
+	public void setLastName(String lastName){
 		this.lastName= aes.encryptText(lastName);
 	}
 	
@@ -75,6 +88,35 @@ public class ClientRecord {
 	}
 	public void setCorporationList(Map<String, String> corporationList){
 		this.corporationList= corporationList;
+	}
+	
+	public void encrypt(){
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setSitePassword(sitePassword);
+		this.setPhone(phone);
+		this.setPrimaryEmail(primaryEmail);
+	}
+	
+	
+	public String createNewClient(){
+		
+		try{
+		String result = "";
+		AWSConnection client = new AWSConnection();
+		
+		UUID clientId = UUID.randomUUID();
+		this.clientId = clientId.toString();
+		
+		
+		DynamoDBMapper mapper = new DynamoDBMapper(client.getAWSClient());
+        mapper.save(this);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "ok;";
+		
 	}
 	
 }
